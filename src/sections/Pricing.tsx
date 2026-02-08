@@ -2,11 +2,16 @@ import { useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Crown } from 'lucide-react';
 
+interface BenefitItem {
+  text: string;
+  subtext?: string;
+}
+
 interface PricingTier {
   price: string;
   name: string;
   tierLabel: string;
-  benefits: string[];
+  benefits: (string | BenefitItem)[];
   ctaText: string;
   accentColor: 'blue' | 'orange' | 'purple';
   colorFact: string;
@@ -50,7 +55,7 @@ export function Pricing() {
       ],
       ctaText: 'Select Tier 1',
       accentColor: 'blue',
-      colorFact: 'Blue symbolizes trust, dependability, calmness, and professionalism',
+      colorFact: 'Blue symbolizes trust, dependability, calmness, and professionalism.',
     },
     {
       price: '$25/mo',
@@ -62,12 +67,15 @@ export function Pricing() {
         'Extended memory',
         'Higher AI Usage limit',
         'Early feature access',
-        '2 free months after official release',
-        '+ a 20% discount for life after official release',
+        {
+          text: '2 free months after official release',
+          subtext: 'valid after second recurring payment',
+        },
+        '+ a 20% discount for life, after official release',
       ],
       ctaText: 'Select Tier 2',
       accentColor: 'orange',
-      colorFact: 'Orange represents enthusiasm, creativity, happiness, and determination',
+      colorFact: 'Orange represents enthusiasm, creativity, happiness, and determination.',
     },
     {
       price: '$50/mo',
@@ -75,13 +83,13 @@ export function Pricing() {
       tierLabel: 'Tier 3',
       benefits: [
         'Everything in Tier 2',
-        'Highest lex plan free for life after official release (pay now, save later)',
-        'Even more memory for even more context',
-        'Even higher AI Usage limit for serious business builders',
+        'Highest lex plan free for life, after official release (pay now, save later)',
+        'Even more memory, for even more context',
+        'Even higher AI Usage limit, for serious business builders',
       ],
       ctaText: 'Select Tier 3',
       accentColor: 'purple',
-      colorFact: 'In medieval times, purple was a highly exclusive, expensive, and prestigious color symbolizing royalty, imperial power, and divinity',
+      colorFact: 'In medieval times, purple was a highly exclusive, expensive, and prestigious color symbolizing royalty, imperial power, and divinity.',
       showCrown: true,
     },
   ];
@@ -214,12 +222,23 @@ export function Pricing() {
 
                   {/* Benefits */}
                   <ul className="space-y-2.5 mb-6 flex-grow">
-                    {tier.benefits.map((benefit, benefitIndex) => (
-                      <li key={benefitIndex} className="flex items-start gap-2">
-                        <span className={styles.text}>•</span>
-                        <span className="text-sm text-[var(--near-black)]">{benefit}</span>
-                      </li>
-                    ))}
+                    {tier.benefits.map((benefit, benefitIndex) => {
+                      const isObject = typeof benefit === 'object';
+                      const benefitText = isObject ? benefit.text : benefit;
+                      const subtext = isObject ? benefit.subtext : undefined;
+                      
+                      return (
+                        <li key={benefitIndex} className="flex items-start gap-2">
+                          <span className={styles.text}>•</span>
+                          <div className="flex flex-col">
+                            <span className="text-sm text-[var(--near-black)]">{benefitText}</span>
+                            {subtext && (
+                              <span className="text-xs text-gray-500 italic mt-0.5">{subtext}</span>
+                            )}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
 
                   {/* CTA Button */}

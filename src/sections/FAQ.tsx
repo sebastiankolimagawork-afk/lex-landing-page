@@ -72,7 +72,7 @@ export function FAQ() {
         {/* Notification Signup Form */}
         <div className="max-w-[400px] mx-auto mb-12">
           <p className="body-regular mb-4">
-            Add your email here to be notified when Lex Launch Crew is available for enterprise and teams:
+            Add your email here to be notified when Lex Launch Crew is available for enterprise, teams and non-technical founders:
           </p>
           <form onSubmit={handleNotificationSubmit} className="space-y-4">
             <Input

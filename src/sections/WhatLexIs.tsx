@@ -4,7 +4,7 @@ export function WhatLexIs() {
       <div className="container-narrow">
         <p className="body-large text-center">
           Lex is an AI co-founder for solo technical founders. While you build the product, 
-          Lex learns your business, tracks your goals, and compounds institutional knowledge 
+          Lex learns your business, tracks your goals, and compounds knowledge 
           over time.
         </p>
       </div>

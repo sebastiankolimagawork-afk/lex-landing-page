@@ -28,7 +28,7 @@ export function FAQ() {
     },
     {
       question: 'How do I know if Lex Launch Crew is right for me?',
-      answer: 'We are currently building for Solo founders at any stage in their journey (pre idea - scaling). Currently Lex is not for enterprise or teams, but is planned for.',
+      answer: 'We are currently building for Solo founders at any stage in their journey (pre idea - scaling). Currently Lex is not for enterprise, non-technical founders (vibe coders are welcome) or teams, but it\'s in the plans, so please show your interest below.',
     },
   ];
 
@@ -90,6 +90,7 @@ export function FAQ() {
               <SelectContent>
                 <SelectItem value="team">Team</SelectItem>
                 <SelectItem value="enterprise">Enterprise</SelectItem>
+                <SelectItem value="non-technical">Non-technical</SelectItem>
               </SelectContent>
             </Select>
             <Button type="submit" className="btn-primary w-full">

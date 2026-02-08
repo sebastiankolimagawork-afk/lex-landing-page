@@ -32,13 +32,13 @@ function App() {
         {/* Be Part Of It Section */}
         <BePartOfIt />
 
+        {/* Pricing Section */}
+        <Pricing />
+
         {/* FAQ Section */}
         <div id="faq">
           <FAQ />
         </div>
-
-        {/* Pricing Section */}
-        <Pricing />
       </main>
 
       {/* Footer */}

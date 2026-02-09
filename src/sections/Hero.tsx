@@ -11,8 +11,9 @@ export function Hero() {
           muted
           playsInline
           className="w-full h-full object-cover"
-          poster="/video-poster.jpg"
+          poster="/video-poster.webp"
         >
+          <source src="/hero-video.webm" type="video/webm" />
           <source src="/hero-video.mp4" type="video/mp4" />
         {/* Fallback for browsers that don't support video */}
         <div className="w-full h-full bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center">

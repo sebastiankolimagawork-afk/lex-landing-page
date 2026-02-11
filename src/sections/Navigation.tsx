@@ -65,6 +65,12 @@ export function Navigation() {
           >
             Join Launch Crew
           </button>
+          <a
+            href="https://app.lexlaunchcrew.com/auth"
+            className="font-body text-sm px-4 py-2 rounded-lg border-2 border-[var(--blue-accent)] text-[var(--blue-accent)] hover:bg-[var(--blue-accent)] hover:text-white transition-all"
+          >
+            Login
+          </a>
         </div>
 
         {/* Mobile Menu Button */}

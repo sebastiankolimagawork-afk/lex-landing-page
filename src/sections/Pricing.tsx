@@ -94,8 +94,11 @@ export function Pricing() {
     },
   ];
 
-  const handleSelectTier = (tierName: string) => {
-    alert(`You selected ${tierName}. Redirecting to checkout...`);
+  const handleSelectTier = (tierLabel: string) => {
+    // Extract tier number from label (e.g., "Tier 1" -> "1")
+    const tierNumber = tierLabel.split(' ')[1];
+    // Redirect to app signup with tier parameter
+    window.location.href = `https://app.lexlaunchcrew.com/signup?tier=${tierNumber}`;
   };
 
   const getAccentStyles = (color: string) => {

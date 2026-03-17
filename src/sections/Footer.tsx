@@ -18,19 +18,23 @@ export function Footer() {
 
           {/* Links */}
           <div className="flex items-center gap-4 text-sm font-body text-[var(--near-black)]">
-            <button 
-              onClick={() => alert('Privacy policy coming soon')}
+            <a
+              href="https://app.lexlaunchcrew.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-[var(--blue-accent)] transition-colors"
             >
               Privacy
-            </button>
+            </a>
             <span className="text-[var(--medium-gray)]">|</span>
-            <button 
-              onClick={() => alert('Terms of service coming soon')}
+            <a
+              href="https://app.lexlaunchcrew.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-[var(--blue-accent)] transition-colors"
             >
               Terms
-            </button>
+            </a>
             <span className="text-[var(--medium-gray)]">|</span>
             <button 
               onClick={() => scrollToSection('faq')}
@@ -44,7 +48,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="text-center">
           <p className="body-small text-[var(--medium-gray)]">
-            © 2026 Kolkar Technologies
+            © 2026 KOLKAR TECHNOLOGIES INC. All rights reserved.
           </p>
         </div>
       </div>

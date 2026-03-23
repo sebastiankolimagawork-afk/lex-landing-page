@@ -20,6 +20,10 @@ export function FAQ() {
   const [userType, setUserType] = useState('');
   const [questionText, setQuestionText] = useState('');
   const [questionEmail, setQuestionEmail] = useState('');
+  const [notifySubmitting, setNotifySubmitting] = useState(false);
+  const [notifySubmitted, setNotifySubmitted] = useState(false);
+  const [questionSubmitting, setQuestionSubmitting] = useState(false);
+  const [questionSubmitted, setQuestionSubmitted] = useState(false);
 
   const faqs: FAQItem[] = [
     {
@@ -32,18 +36,30 @@ export function FAQ() {
     },
   ];
 
-  const handleNotificationSubmit = (e: React.FormEvent) => {
+  const handleNotificationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    alert(`Thank you! We'll notify you when Lex is available for ${userType}.`);
+    setNotifySubmitting(true);
+    await fetch('https://formspree.io/f/xnjgenag', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: notificationEmail, user_type: userType, _subject: 'Lex - New Waitlist Signup' }),
+    });
+    setNotifySubmitting(false);
+    setNotifySubmitted(true);
     setNotificationEmail('');
     setUserType('');
   };
 
-  const handleQuestionSubmit = (e: React.FormEvent) => {
+  const handleQuestionSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    alert('Thank you for your question! We will get back to you soon.');
+    setQuestionSubmitting(true);
+    await fetch('https://formspree.io/f/xnjgenag', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: questionEmail, question: questionText, _subject: 'Lex - New Question Submitted' }),
+    });
+    setQuestionSubmitting(false);
+    setQuestionSubmitted(true);
     setQuestionText('');
     setQuestionEmail('');
   };
@@ -93,10 +109,13 @@ export function FAQ() {
                 <SelectItem value="non-technical">Non-technical</SelectItem>
               </SelectContent>
             </Select>
-            <Button type="submit" className="btn-primary w-full">
-              Notify Me
+            <Button type="submit" className="btn-primary w-full" disabled={notifySubmitting}>
+              {notifySubmitting ? 'Submitting...' : 'Notify Me'}
             </Button>
           </form>
+          {notifySubmitted && (
+            <p className="body-small text-[var(--blue-accent)] mt-3 text-center">Thanks! We'll notify you when it's ready.</p>
+          )}
         </div>
 
         {/* Question Submission Form */}
@@ -120,10 +139,13 @@ export function FAQ() {
               className="input-field"
               required
             />
-            <Button type="submit" className="btn-primary w-full">
-              Submit Question
+            <Button type="submit" className="btn-primary w-full" disabled={questionSubmitting}>
+              {questionSubmitting ? 'Submitting...' : 'Submit Question'}
             </Button>
           </form>
+          {questionSubmitted && (
+            <p className="body-small text-[var(--blue-accent)] mt-3 text-center">Thanks! We'll get back to you soon.</p>
+          )}
         </div>
       </div>
     </section>
